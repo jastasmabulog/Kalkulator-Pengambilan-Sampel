@@ -12,7 +12,6 @@ function buildPDFTemplate(r) {
   const tgl = now.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
   const jam = now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
 
-  // Math Blocks Karton
   let mathKarton = '';
   if (r.rK.isSubLot) {
      mathKarton = `
@@ -101,19 +100,29 @@ async function exportPDF() {
     const templateContainer = document.getElementById('pdf-template');
     templateContainer.innerHTML = buildPDFTemplate(r);
 
-    const canvas = await html2canvas(templateContainer.firstElementChild, { scale: 2, useCORS: true });
-    
+    const element = templateContainer.firstElementChild;
+
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      windowHeight: element.scrollHeight,
+      height: element.scrollHeight,
+    });
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4');
     const A4_W_MM = 210, A4_H_MM = 297;
+
     const imgWidthMM = A4_W_MM;
     const imgHeightMM = (canvas.height * imgWidthMM) / canvas.width;
 
     const imgData = canvas.toDataURL('image/jpeg', 0.95);
-    doc.addImage(imgData, 'JPEG', 0, 0, imgWidthMM, imgHeightMM);
+
+    // Selalu 1 halaman — scale down jika konten lebih tinggi dari A4
+    doc.addImage(imgData, 'JPEG', 0, 0, imgWidthMM, Math.min(imgHeightMM, A4_H_MM));
 
     doc.save(`Audit_SNI0428_${fmt(r.nK)}_Kardus.pdf`);
-  } catch(e) {
+  } catch (e) {
     console.error(e);
     alert('Gagal membuat PDF. Coba lagi.');
   } finally {
