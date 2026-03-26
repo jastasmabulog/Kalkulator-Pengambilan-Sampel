@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Sampling MINYAKITA — SNI 19-0428-1998</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+<div class="container">
+
+  <header>
+    
+    <div class="hero-card">
+      <div class="logo-row">
+      <img src="logo.png" alt="Logo">
+      <div class="divider"></div>
+      <img src="jastasma.png" alt="Logo Bulog">
+    </div>
+      <div class="badge">🛢️ MINYAKITA — Tervalidasi Penuh SNI 19-0428-1998</div>
+      <h1>
+        Kalkulator <em>Pemeriksaan Kemasan</em><br>
+        MINYAKITA — Tumpukan
+      </h1>
+      <p class="subtitle">
+        Membedakan secara spesifik antara <b>Dus yang Ditarik</b> (Tabel 2) dan <b>Dus yang Dibuka</b> menggunakan rumus pasti <b>x/y</b> (Tabel 3 & 4).
+      </p>
+    </div>
+  </header>
+
+  <!-- Kontainer Utama Aplikasi -->
+  <main id="app-root"></main>
+
+  <section class="ref-section">
+    <div class="ref-header">📚 Fakta & Ketentuan Asli SNI 19-0428-1998</div>
+    <div class="ref-tabs">
+      <button class="rt-btn active" onclick="showRef(this, 'ref-rules')">Aturan Hitung Lengkap</button>
+      <button class="rt-btn" onclick="showRef(this, 'ref-param')">Parameter Uji</button>
+    </div>
+    
+    <div id="ref-rules" class="rt-panel active">
+      <p><strong>1. Tabel 2 (Karton): Dus yang Ditarik</strong><br>
+      Lot lebih dari 1000 kemasan dibagi tanding sama besar. Sampel ditarik dari akar pangkat dua, <b>maksimum 30 dus per tanding</b>.</p>
+      
+      <p style="margin-top:10px;"><strong>2. Tabel 3: Target Primer (Nilai x)</strong><br>
+      Mencari target kemasan kecil berdasarkan populasi (menggunakan rumus interpolasi jika berada di antara titik acuan). Angka pasti dari sini ditetapkan sebagai <b>Nilai x</b>.</p>
+
+      <p style="margin-top:10px;"><strong>3. Tabel 4: Batas per Karton (Nilai y)</strong><br>
+      Angka pasti maksimum sampel per kardus:<br>
+      • Isi &lt; 12 ➔ <b>y = semua</b><br>
+      • Isi 12 - 24 ➔ <b>y = 10</b><br>
+      • Isi &gt; 24 ➔ <b>y = 16</b>
+      </p>
+
+      <p style="margin-top:10px; color:#b45309; background:#fffbeb; padding:8px; border-radius:6px; border:1px solid #fef3c7;">
+        <strong>4. Dus yang Harus Dibuka (Rumus x/y)</strong><br>
+        Untuk menentukan berapa dus yang harus dirobek/dibuka dari sampel yang sudah ditarik, gunakan rumus: <b>x (Tabel 3) dibagi y (Tabel 4)</b>, dibulatkan ke atas.
+      </p>
+    </div>
+
+    <div id="ref-param" class="rt-panel">
+      <table class="ref-table">
+        <thead>
+          <tr><th>Kemasan</th><th>Parameter</th><th>Standar</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="2" style="font-weight:600">Sekunder</td><td>Kebersihan</td><td>Bebas dari tanda kebocoran</td></tr>
+          <tr><td>Jumlah isi</td><td>Sesuai</td></tr>
+          <tr><td rowspan="4" style="font-weight:600">Primer</td><td>Kondisi kemasan</td><td>Baik / tidak bocor</td></tr>
+          <tr><td>Segel / sealer</td><td>Baik / tidak rusak</td></tr>
+          <tr><td>Label BPOM, SNI</td><td>Ada dan jelas terbaca</td></tr>
+          <tr class="hi"><td>Expired date</td><td>Minimal 12 bulan dari tanggal pemeriksaan</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- Wadah Render PDF (Hidden) -->
+<div id="pdf-template"></div>
+
+<!-- Pustaka Eksternal PDF -->
+<script src="[https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js](https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js)"></script>
+<script src="[https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js)"></script>
+
+<!-- Script Logika Lokal -->
+<script src="calculator.js"></script>
+<script src="pdf-export.js"></script>
+
+</body>
+</html>
