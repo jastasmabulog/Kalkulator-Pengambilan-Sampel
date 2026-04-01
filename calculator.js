@@ -151,7 +151,7 @@ function hitungPrimer(totalPopulasiPrimer, jumlahKartonDitarik, isiPerKarton) {
       <ul style="padding-left:16px; margin-bottom:0;">
         <li><b>Nilai x</b> (Target Primer) = <b>${x}</b>.</li>
         <li><b>Nilai y</b> (Batas Tabel 4) = <b>${y}</b>.</li>
-        <li style="margin-top:6px; color:#1d4ed8; font-weight:700;">Dus Dibuka (x/y) = ${x} / ${y} = ${exactBuka.toFixed(2)} ➔ ${dusDibuka} Dus.</li>
+        <li style="margin-top:6px; color:#1d4ed8; font-weight:700;">Dus Dibuka (x/y) = ${x} / ${y} = ${exactBuka.toFixed(2)} ➔ Minimal ${dusDibuka} Dus.</li>
       </ul>
       ${warningHtml}
     </div>
@@ -306,7 +306,7 @@ function renderStep3() {
 
     <div class="res-box final">
       <div class="res-title">2. Kardus Dibuka & Eksekusi Primer (Rumus x/y)</div>
-      <div class="res-val">${fmt(rP.dusDibuka)} <span style="font-size:16px; font-weight:600; color:#14532d">kardus dibuka</span></div>
+      <div class="res-val">${fmt(rP.dusDibuka)} <span style="font-size:16px; font-weight:600; color:#14532d">kardus dibuka (minimal) </span></div>
       <div class="res-sub">Ambil <b>maksimal ${rP.y} ${jp}</b> dari setiap kardus yang dibuka hingga mencapai total sampel primer sejumlah <b>${fmt(rP.x)} ${jp}</b>.</div>
       <div class="calc-detail">
         <div class="pdf-math-row"><div class="pmr-key">Total Populasi Primer</div><div class="pmr-val">${fmt(totalPopulasiPrimer)} ${jp}</div></div>
